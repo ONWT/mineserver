@@ -38,7 +38,6 @@
 // This is our core PRNG engine. The Mersenne Twister is both fast and good.
 
 typedef std::tr1::mt19937 MyRNG;
-typedef long unsigned int         luint;
 #if (defined(__GNUC__))
 /* GCC TR1 implementation has a bug, which doesn't produce a correct
  * distribution on 64bit-machines when using mt19937 and uniform_int for 64bit
@@ -52,9 +51,7 @@ typedef std::tr1::uniform_int<MyRNG::result_type> MyUniform;
 // Ideally we would have "typedef MyRNG::result_type seed_type", but mt19937 is broken.
 // Set this to whatever MyRNG::seed(seed_type) needs to be.
 
-//typedef unsigned long int seed_type;
-
-typedef MyRNG::result_type seed_type;
+typedef unsigned long int seed_type;
 
 
 /// Global objects: The PRNG, its seed value, and a 32-bit uniform distribution.
