@@ -25,7 +25,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if defined(linux)
+#if defined(linux) || defined (__APPLE__)
 #include <unistd.h>
 #include <libgen.h>
 #include <wordexp.h>  // for wordexp
@@ -270,7 +270,7 @@ std::string relativeToAbsolute(std::string pathname)
 std::string getHomeDir()
 {
 
-#if defined(linux)
+#if defined(linux) || defined (__APPLE__)
 
   return canonicalizePath("~/.mineserver");
 
@@ -310,7 +310,10 @@ std::string pathOfExecutable()
   }
 
   return std::string(path);
-
+#elif defined (__APPLE__)
+ 
+ return ".";
+ 
 #elif defined(WIN32)
 
   if (0 == GetModuleFileName(NULL, path, dest_len))

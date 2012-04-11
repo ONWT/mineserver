@@ -230,7 +230,11 @@ void BiomeGen::generateChunk(int x, int z, int map)
   // Add trees
   if (addTrees)
   {
-    AddTrees(x, z, map);  // add trees will make a *kind-of* forest of 16*16 chunks
+#if defined (__APPLE__)
+   //AddTrees(x, z, map);  // add trees will make a *kind-of* forest of 16*16 chunks
+#else
+   AddTrees(x, z, map);  // add trees will make a *kind-of* forest of 16*16 chunks
+#endif
   }
 
 }
